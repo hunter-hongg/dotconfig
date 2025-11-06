@@ -46,6 +46,9 @@ require 'nvim-treesitter.configs'.setup {
 -- bufferline配置
 local bufferline = require('bufferline')
 bufferline.setup {
+    options = {
+        close_command = "bp | sp | b %d | bd | bn",
+    }
 }
 -- Set up nvim-cmp.
 local cmp = require'cmp'
@@ -95,9 +98,6 @@ cmp.setup.cmdline(':', {
       { name = 'cmdline' }
     }),
     matching = { disallow_symbol_nonprefix_matching = false }
-})
-vim.lsp.config('clangd', {
-    capabilities = capabilities
 })
 -- noice.nvim配置
 require("noice").setup({
@@ -153,3 +153,17 @@ require('neoscroll').setup()
 require('mini.sessions').setup()
 -- mini.splitjoin配置
 require('mini.splitjoin').setup()
+-- conform.nvim配置
+require('conform').setup{
+      formatters_by_ft = {
+           lua = { "stylua" },
+           cpp = { "astyle" },
+      },
+      format_on_save = function(bufnr)
+        -- Disable with a global or buffer-local variable
+        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+          return
+        end
+        return { timeout_ms = 500, lsp_format = "fallback" }
+      end,
+}

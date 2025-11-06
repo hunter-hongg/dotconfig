@@ -28,15 +28,15 @@ vim.cmd("let g:rainbow_active = 1")
 
 -- Fm快捷键
 
-vim.cmd("nnoremap <F1> <<")
-vim.cmd("nnoremap <F2> >>")
-vim.cmd("nnoremap <F3> :colorscheme onelight<CR>")
-vim.cmd("nnoremap <F4> :colorscheme tokyonight-day<CR>")
-vim.cmd("nnoremap <F5> :colorscheme leaf<CR>")
-vim.cmd("nnoremap <F6> :colorscheme gruvbox<CR>")
-vim.cmd("nmap <F8> <F10><Esc>")
-vim.cmd("nnoremap <F9> :Play2048<CR>")
-vim.cmd("nnoremap <F10> :CMakeSelectCwd /home/coding/学习平台<cr>:CMakeSelectBuildDir /home/coding/cmakeout<cr>:!rm ~/桌面/out<cr>:!rm ~/桌面/*.json<cr>")
+-- vim.cmd("nnoremap <F1> <<")
+-- vim.cmd("nnoremap <F2> >>")
+-- vim.cmd("nnoremap <F3> :colorscheme onelight<CR>")
+-- vim.cmd("nnoremap <F4> :colorscheme tokyonight-day<CR>")
+-- vim.cmd("nnoremap <F5> :colorscheme leaf<CR>")
+-- vim.cmd("nnoremap <F6> :colorscheme gruvbox<CR>")
+-- vim.cmd("nmap <F8> <F10><Esc>")
+-- vim.cmd("nnoremap <F9> :Play2048<CR>")
+-- vim.cmd("nnoremap <F10> :CMakeSelectCwd /home/coding/学习平台<cr>:CMakeSelectBuildDir /home/coding/cmakeout<cr>:!rm ~/桌面/out<cr>:!rm ~/桌面/*.json<cr>")
 
 -- Leader快捷键
 
@@ -46,7 +46,7 @@ vim.cmd("nnoremap <Leader>q :q<CR>")
 vim.cmd("nnoremap <Leader>s :source $MYVIMRC<CR>")
 vim.cmd("nnoremap <Leader>e :e ~/.config/nvim/lua/conf/myconf.lua<CR>")
 vim.cmd("nnoremap <Leader>p :e ~/.config/nvim/lua/conf/pconf.lua<CR>")
-vim.cmd("nnoremap <Leader>l :e ~/.config/nvim/lua/plugins<CR>")
+vim.cmd("nnoremap <Leader>m :e $MYVIMRC<CR>")
 
 vim.cmd("nnoremap <Leader>t :cd ")
 vim.cmd("nnoremap <Leader>ts :cd ~/学习平台<CR>")
@@ -69,30 +69,30 @@ vim.cmd("nnoremap <leader>fh <cmd>Telescope help_tags<cr>")
 vim.cmd("nnoremap <C-g> :LazyGit<CR>")
 vim.cmd("nnoremap <C-s> :wa!<CR>")
 vim.cmd("inoremap <C-s> <Esc>:wa<CR>i")
-vim.cmd("nnoremap <C-o> :NvimTreeToggle<CR>")
+vim.cmd("nnoremap <C-o> :NvimTreeToggle<CR><C-w><C-l>")
 vim.cmd("nnoremap <C-x> :")
 vim.cmd("nnoremap <C-h> <C-w>h")
 vim.cmd("nnoremap <C-j> <C-w>j")
 vim.cmd("nnoremap <C-k> <C-w>k")
 vim.cmd("nnoremap <C-l> <C-w>l")
+vim.cmd("nnoremap <C-n> :ene<cr>")
 vim.cmd("nnoremap <C-e> :e ~/.config/nvim/lua/conf/lualine-conf.lua")
 vim.cmd("nnoremap <C-Tab> :bn<CR>")
 vim.cmd("nnoremap <C-PageUp> :bp<CR>")
 vim.cmd("nnoremap <C-PageDown> :bn<CR>")
-vim.cmd("nnoremap <C-p> :lua Snacks.picker.files()<CR>")
+vim.cmd("nnoremap <C-p> :Telescope find_files<CR>")
 vim.cmd("nnoremap <C-z> u")
 vim.cmd("nnoremap <C-M-z> <C-r>")
 
 -- Meta快捷键
 
 vim.cmd("nnoremap <M-x> :Lazy<CR>")
-vim.cmd("nnoremap <M-d> :lua Snacks.dashboard()<cr>")
+vim.cmd("nnoremap <M-d> :NvimTreeClose<cr>:Dashboard <cr>")
 vim.cmd("nnoremap <M-s> :AutoSession save<cr>")
-vim.cmd("nnoremap <M-r> :AutoSession search<cr>")
+vim.cmd("nnoremap <M-r> :AutoSession restore ")
 vim.cmd("nnoremap <M-u> :lua require('undotree').toggle()<cr>")
-vim.cmd("nnoremap <M-q> :Rg ")
-vim.cmd("nnoremap <M-e> :GrugFar<cr>")
-vim.cmd("inoremap <M-e> <Esc>:GrugFar<cr>")
+vim.cmd("nmap <M-q> <leader>fg")
+vim.cmd("nnoremap <M-w> :Bd <cr>")
 
 -- 对调;:
 
@@ -120,3 +120,35 @@ vim.cmd("inoremap <silent><c-t> <Esc><Cmd>exe v:count1 . \"ToggleTerm\"<CR>")
 vim.cmd("nmap <silent><c-`> <c-t>")
 vim.cmd("imap <silent><c-`> <c-t>")
 vim.cmd("tmap <silent><c-`> <c-t>")
+
+--  其他配置
+vim.cmd("nnoremap <Tab> za")
+vim.api.nvim_create_user_command("Format", function(args)
+  local range = nil
+  if args.count ~= -1 then
+    local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+    range = {
+      start = { args.line1, 0 },
+      ["end"] = { args.line2, end_line:len() },
+    }
+  end
+  require("conform").format({ async = true, lsp_format = "fallback", range = range })
+end, { range = true })
+vim.api.nvim_create_user_command("FormatDisable", function(args)
+  if args.bang then
+    -- FormatDisable! will disable formatting just for this buffer
+    vim.b.disable_autoformat = true
+  else
+    vim.g.disable_autoformat = true
+  end
+end, {
+  desc = "Disable autoformat-on-save",
+  bang = true,
+})
+vim.api.nvim_create_user_command("FormatEnable", function()
+  vim.b.disable_autoformat = false
+  vim.g.disable_autoformat = false
+end, {
+  desc = "Re-enable autoformat-on-save",
+})
+

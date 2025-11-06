@@ -39,15 +39,6 @@ return {
     },
     { "akinsho/horizon.nvim", version = "*" },
     {
-      "NeogitOrg/neogit",
-      dependencies = {
-        "nvim-lua/plenary.nvim",         -- required
-        "sindrets/diffview.nvim",        -- optional - Diff integration
-
-        "nvim-telescope/telescope.nvim", -- optional
-      },
-    },
-    {
       "olimorris/onedarkpro.nvim",
       priority = 1000, -- Ensure it loads first
     },
@@ -125,9 +116,6 @@ return {
       end,
       ft = { "markdown" },
     },
-    { 
-        "p00f/clangd_extensions.nvim"
-    },
     {
       "folke/which-key.nvim",
       event = "VeryLazy",
@@ -167,64 +155,64 @@ return {
     { "rebelot/kanagawa.nvim" },
     { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, },
     { "daschw/leaf.nvim" },
-    {
-      "folke/snacks.nvim",
-      priority = 1000,
-      lazy = false,
-      ---@type snacks.Config
-      opts = {
-        bigfile = { enabled = true },
-        bufdelete = {
-            enabled = true,
-        }, 
-        dashboard = {
-           enabled = true, 
-           preset = {
-             keys = {
-               { key = "n", desc = "新建文件", 
-                         action = ":ene | startinsert" },
-               { key = "c", desc = "配置文件", 
-                         action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
-               { key = "s", desc = "恢复会话", 
-                         action = ":AutoSession search" },
-               { key = "l", desc = "插件管理", 
-                         action = ":Lazy", 
-                         enabled = package.loaded.lazy ~= nil },
-               { key = "t", desc = "打开终端", 
-                         action = ":ToggleTerm" },
-               { key = "k", desc = "构建CMake", 
-                         action = ":CMakeBuild -j4" }, 
-               { key = "r", desc = "运行CMake", 
-                         action = ":CMakeRun -j4" }, 
-               { key = "R", desc = "生成CMake", 
-                         action = ":CMakeGenerate"},
-               { key = "q", desc = "退出Neovim", action = ":qa" },
-             },
-          }, 
-        },
-        explorer = { enabled = true },
-        indent = { enabled = true },
-        input = { enabled = true },
-        picker = { enabled = true },
-        notifier = { enabled = true },
-        quickfile = { enabled = true },
-        scope = { enabled = true },
-        scroll = { enabled = true },
-        statuscolumn = {
-            enabled = true,
-            left = { "mark", "sign" },  -- 左侧显示标记和符号
-            right = { "git", "fold" },  -- 右侧显示Git状态和折叠图标
-            refresh = 50,               -- 刷新间隔(ms)
-            folds = {                   -- 折叠图标配置
-              open = true,              -- 显示展开折叠图标
-              git_hl = true             -- 使用Git Signs高亮
-            }
-        } ,
-        words = { enabled = true },
-        terminals = {enabled = true},
-        toggle = { enabled = true },
-      },
-    },
+--  {
+--    "folke/snacks.nvim",
+--    priority = 1000,
+--    lazy = false,
+--    ---@type snacks.Config
+--    opts = {
+--      bigfile = { enabled = true },
+--      bufdelete = {
+--          enabled = true,
+--      }, 
+--      dashboard = {
+--         enabled = true, 
+--         preset = {
+--           keys = {
+--             { key = "n", desc = "新建文件", 
+--                       action = ":ene | startinsert" },
+--             { key = "c", desc = "配置文件", 
+--                       action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+--             { key = "s", desc = "恢复会话", 
+--                       action = ":AutoSession search" },
+--             { key = "l", desc = "插件管理", 
+--                       action = ":Lazy", 
+--                       enabled = package.loaded.lazy ~= nil },
+--             { key = "t", desc = "打开终端", 
+--                       action = ":ToggleTerm" },
+--             { key = "k", desc = "构建CMake", 
+--                       action = ":CMakeBuild -j8" }, 
+--             { key = "r", desc = "运行CMake", 
+--                       action = ":CMakeRun -j8" }, 
+--             { key = "R", desc = "生成CMake", 
+--                       action = ":CMakeGenerate"},
+--             { key = "q", desc = "退出Neovim", action = ":qa" },
+--           },
+--        }, 
+--      },
+--      explorer = { enabled = true },
+--      indent = { enabled = true },
+--      input = { enabled = true },
+--      picker = { enabled = true },
+--      notifier = { enabled = true },
+--      quickfile = { enabled = true },
+--      scope = { enabled = true },
+--      scroll = { enabled = true },
+--      statuscolumn = {
+--          enabled = true,
+--          left = { "mark", "sign" },  -- 左侧显示标记和符号
+--          right = { "git", "fold" },  -- 右侧显示Git状态和折叠图标
+--          refresh = 50,               -- 刷新间隔(ms)
+--          folds = {                   -- 折叠图标配置
+--            open = true,              -- 显示展开折叠图标
+--            git_hl = true             -- 使用Git Signs高亮
+--          }
+--      } ,
+--      words = { enabled = true },
+--      terminals = {enabled = true},
+--      toggle = { enabled = true },
+--    },
+--  },
     {
       "jiaoshijie/undotree",
       ---@module 'undotree.collector'
@@ -238,22 +226,77 @@ return {
     },
     { "duane9/nvim-rg" },
     {
-        'MagicDuck/grug-far.nvim',
-        -- Note (lazy loading): grug-far.lua defers all it's requires so it's lazy by default
-        -- additional lazy config to defer loading is not really needed...
-        config = function()
-          -- optional setup call to override plugin options
-          -- alternatively you can set options with vim.g.grug_far = { ... }
-          require('grug-far').setup({
-              showStatusIcon = false,
-              icons = {
-                    enabled = false, 
-                }, 
-          });
-        end
-    },
-    {
         'nvim-telescope/telescope.nvim', tag = '0.1.8',
         dependencies = { 'nvim-lua/plenary.nvim' }
     }, 
+    {
+      'stevearc/conform.nvim',
+      opts = {},
+    },
+    {
+      'nvimdev/dashboard-nvim',
+      event = 'VimEnter',
+      config = function()
+        require('dashboard').setup {
+                theme = 'hyper',
+                config = {
+                  week_header = {
+                   enable = true,
+                  },
+                  shortcut = {
+                    {
+                        icon_hl = '@variable',
+                        desc = '插件管理', 
+                        action = 'Lazy', 
+                        key = 'a',
+                        group = 'Label',
+                    },
+                    {
+                        icon_hl = '@variable',
+                        desc = '新建文件',
+                        action = 'ene',
+                        key = 'b',
+                        group = 'Label',
+                    },
+                    {
+                        icon_hl = '@variable',
+                        desc = '打开文件',
+                        action = 'Telescope find_files',
+                        key = 'c',
+                        group = 'Label',
+                    },
+                    {
+                        icon_hl = '@variable',
+                        desc = '恢复会话',
+                        action = 'AutoSession search',
+                        key = 'd',
+                        group = 'Label',
+                    },
+                    {
+                        icon_hl = '@variable',
+                        desc = '退出Neovim',
+                        action = 'qa',
+                        key = 'e',
+                        group = 'Label',
+                    },
+                  },
+                },
+         }
+      end,
+      dependencies = { {'nvim-tree/nvim-web-devicons'}}
+    },
+    {
+        'dense-analysis/ale',
+        config = function()
+            -- Configuration goes here.
+            local g = vim.g
+  
+            g.ale_ruby_rubocop_auto_correct_all = 1
+  
+            g.ale_linters = {
+                ruby = {'rubocop', 'ruby'},
+                lua = {'lua_language_server'}
+            }
+        end
+    },
 } 
