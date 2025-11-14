@@ -1,6 +1,8 @@
-local loader = require("function.loader")
-require("conf.myconf")
 require("config.lazy")
+
+local loader = require("function.loader")
+loader.load_modules("config")
+require("conf.myconf")
 require("conf.pconf")
 require("conf.cmake-tools-conf")
 require("conf.lualine-conf")
