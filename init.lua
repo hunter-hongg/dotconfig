@@ -4,7 +4,7 @@ require("conf.pconf")
 require("conf.cmake-tools-conf")
 require("conf.lualine-conf")
 
-vim.cmd[[
+vim.cmd([[
 
 " Vim配置
 
@@ -21,8 +21,9 @@ Plug 'Mofiqul/vscode.nvim'               " 配色方案
 call plug#end()
 
 colorscheme onelight
-colorscheme onelight
+colorscheme onelight 
+set background=light
 
 autocmd BufWritePost *.c *.cpp *.h *.hpp silent! !ctags -R &
 
-]]
+]])
