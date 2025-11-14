@@ -1,3 +1,4 @@
+local loader = require("function.loader")
 require("conf.myconf")
 require("config.lazy")
 require("conf.pconf")
