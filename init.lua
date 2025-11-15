@@ -1,11 +1,13 @@
 require("config.lazy")
 
 local loader = require("function.loader")
+
+-- 基本配置
 loader.load_modules("config")
-require("conf.myconf")
-require("conf.pconf")
-require("conf.cmake-tools-conf")
-require("conf.lualine-conf")
+-- 快捷键配置
+loader.load_modules("keymap")
+-- 插件配置
+loader.load_modules("pconfig")
 
 vim.cmd([[
 
