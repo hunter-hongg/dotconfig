@@ -13,7 +13,7 @@ vim.cmd([[
 
 " Vim配置
 
-command! Bd :bp | sp | bn | bd  
+command! Bd :bp | sp | bn | bd!  
 
 call plug#begin()
 
@@ -29,6 +29,9 @@ colorscheme onelight
 colorscheme onelight 
 set background=light
 
-autocmd BufWritePost *.c *.cpp *.h *.hpp silent! !ctags -R &
+autocmd BufWritePost *.c   silent! !ctags -R &
+autocmd BufWritePost *.cpp silent! !ctags -R &
+autocmd BufWritePost *.h   silent! !ctags -R &
+autocmd BufWritePost *.hpp silent! !ctags -R &
 
 ]])

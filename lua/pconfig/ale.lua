@@ -15,6 +15,7 @@ function M.setup()
 		lua = { "lua_ls" },
 		cpp = { "clangd" },
 		c = { "clangd" },
+		zig = { "zls" },
 	}
 
 	-- 显示设置

@@ -9,7 +9,6 @@ return {
 			vim.cmd("colorscheme arctic")
 		end,
 	},
-	{ "akinsho/horizon.nvim", version = "*" },
 	{ "hunter-hongg/onedarkpro.nvim" },
 	{ "ellisonleao/gruvbox.nvim", priority = 1000, config = true },
 	{ "projekt0n/github-nvim-theme", name = "github-theme" },

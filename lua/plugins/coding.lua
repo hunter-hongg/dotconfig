@@ -35,6 +35,7 @@ return {
 				formatters_by_ft = {
 					lua = { "stylua" },
 					cpp = { "astyle" },
+					zig = { "zig fmt" },
 				},
 				format_on_save = function(bufnr)
 					-- Disable with a global or buffer-local variable

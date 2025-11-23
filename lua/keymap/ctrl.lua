@@ -10,9 +10,9 @@ nnoremap <C-p> :Telescope find_files<CR>
 nnoremap <C-z> u
 nnoremap <C-S-z> <C-r>
 
-" 保存文件
-nnoremap <C-s> :wa!<CR>
-inoremap <C-s> <Esc>:wa!<CR>
+" 旧保存文件
+nnoremap <C-s> <nop>
+inoremap <C-s> <nop>
 
 " Git配置
 nnoremap <C-g> :LazyGit<CR>
