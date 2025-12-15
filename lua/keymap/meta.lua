@@ -5,9 +5,9 @@ nnoremap <M-w> :silent Bd <cr>
 
 " 插件配置
 nnoremap <M-x> :Lazy<CR>
-nnoremap <M-d> :NvimTreeClose<cr>:Dashboard <cr>
+nnoremap <M-d> :lua Snacks.dashboard()<cr>
 nnoremap <M-s> :AutoSession save<cr>
 nnoremap <M-r> :AutoSession restore 
-nmap <M-q> <leader>fg
+nnoremap <M-q> :lua Snacks.dashboard.pick('live_grep')<cr>
 
 ]])

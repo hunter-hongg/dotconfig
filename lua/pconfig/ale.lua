@@ -16,6 +16,8 @@ function M.setup()
 		cpp = { "clangd" },
 		c = { "clangd" },
 		zig = { "zls" },
+		nim = { "nimlsp" },
+        go = { "gopls" },
 	}
 
 	-- 显示设置

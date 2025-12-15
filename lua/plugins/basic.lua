@@ -115,6 +115,7 @@ return {
 			bufferline.setup({
 				options = {
 					close_command = "silent bp | sp | b %d | bd | bn",
+					separator_style = "slant",
 				},
 			})
 		end,
@@ -239,7 +240,10 @@ return {
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
-		config = true,
+		config = function()
+            require('nvim-autopairs').setup()
+            vim.keymap.set('i',  '<CR>','coc#pum#visible() ? coc#pum#confirm() : coc#inline#visible() ? coc#inline#accept() : "<cr>" ', {expr = true, silent = true})
+        end,
 		-- use opts = {} for passing setup options
 		-- this is equivalent to setup({}) function
 	},
@@ -286,5 +290,46 @@ return {
 				},
 			})
 		end,
+	},
+	{
+		"registerGen/clock.nvim",
+		config = true,
+	},
+	{
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+		---@type snacks.Config
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+			bigfile = { enabled = true },
+			dashboard = { 
+                enabled = true ,
+                preset = {
+                    keys = {
+                        { icon = "", key = "f", desc = "查找文件", action = ":lua Snacks.dashboard.pick('files')" },
+                        { icon = "", key = "n", desc = "新建文件", action = ":ene" },
+                        { icon = "", key = "r", desc = "最近文件", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+                        { icon = "", key = "c", desc = "配置文件", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+                        { icon = "", key = "s", desc = "恢复会话", action = ":AutoSession search" },
+                        { icon = "", key = "l", desc = "插件管理", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
+                        { icon = "", key = "q", desc = "退出面板", action = ":q"},
+                        { icon = "", key = "Q", desc = "退出Neovim", action = ":qa" },
+                    },
+                }
+            },
+			explorer = { enabled = true },
+			indent = { enabled = true },
+			input = { enabled = true },
+			picker = { enabled = true },
+			notifier = { enabled = true },
+			quickfile = { enabled = true },
+			scope = { enabled = true },
+			scroll = { enabled = true },
+			statuscolumn = { enabled = true },
+			words = { enabled = true },
+		},
 	},
 }

@@ -1,0 +1,73 @@
+-- -- local builtin = require("veil.builtin")
+-- local current_day = os.date("%A")
+--
+-- require("veil").setup({
+-- 	sections = {
+-- 		builtin.sections.animated(builtin.headers.frames_nvim, {
+-- 			hl = { fg = "#dd1111" },
+-- 		}),
+-- 		builtin.sections.buttons({
+-- 			{
+-- 				icon = "",
+-- 				text = "查找文件",
+-- 				shortcut = "f",
+-- 				callback = function()
+-- 					require("telescope.builtin").find_files()
+-- 				end,
+-- 			},
+-- 			{
+-- 				icon = "",
+-- 				text = "查找缓冲",
+-- 				shortcut = "b",
+-- 				callback = function()
+-- 					require("telescope.builtin").buffers()
+-- 				end,
+-- 			},
+-- 			{
+-- 				icon = "",
+-- 				text = "配置文件",
+-- 				shortcut = "c",
+-- 				callback = function()
+-- 					require("telescope").extensions.file_browser.file_browser({
+-- 						path = vim.fn.stdpath("config"),
+-- 					})
+-- 				end,
+-- 			},
+-- 			{
+-- 				icon = "",
+-- 				text = "插件管理",
+-- 				shortcut = "l",
+-- 				callback = function()
+-- 					vim.cmd([[Lazy]])
+-- 				end,
+-- 			},
+-- 			{
+-- 				icon = "",
+-- 				text = "恢复会话",
+-- 				shortcut = "d",
+-- 				callback = function()
+-- 					vim.cmd([[AutoSession search]])
+-- 				end,
+-- 			},
+--             {
+--                 icon = "",
+--                 text = "退出Veil",
+--                 shortcut = "q", 
+--                 callback = function()
+--                     vim.cmd([[bp | sp | bn | bd]])
+--                 end, 
+--             },
+--             {
+--                 icon = "", 
+--                 text = "退出Neovim", 
+--                 shortcut = "Q", 
+--                 callback = function()
+--                     vim.cmd([[qa]])
+--                 end,
+--             }
+-- 		}),
+-- 	},
+-- 	mappings = {},
+-- 	startup = true,
+-- 	listed = true,
+-- })

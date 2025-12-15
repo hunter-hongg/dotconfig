@@ -18,4 +18,7 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
+nnoremap <Leader>oT <cmd>e ~/org/todos.org<cr>
+nnoremap <Leader>oN <cmd>e ~/org/notes.org<cr>
+
 ]])

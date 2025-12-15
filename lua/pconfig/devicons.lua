@@ -34,9 +34,19 @@ require("nvim-web-devicons").set_icon({
 		color = "#d47911",
 		name = "Rust",
 	},
-    rst = {
+	rst = {
 		icon = "R",
 		color = "#a14601",
 		name = "rst",
-    }
+	},
+	nim = {
+		icon = "N",
+		color = "#f6fa10",
+		name = "Nim",
+	},
+	org = {
+		icon = "O",
+		color = "#f6fa10",
+		name = "org",
+	},
 })
